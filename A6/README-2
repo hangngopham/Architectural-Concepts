@@ -1,0 +1,14 @@
+- I include my test files, which are test.txt, test1.txt, test2.txt.
+
+- Compile and run my program by typing: 
+make
+./test -f test.txt -b 2 -n 1024 -a 2 -w B
+
+- The command line option for input file name is -f. To select the input file name, type:
+./test -f inputfilename 
+
+
+
+
+
+

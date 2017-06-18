@@ -1,0 +1,36 @@
+- I include my test file, which is test.txt. The test.txt is part of the output of the test.c file. Therefore, the inputfilename in the program's command line would be test.txt. To run the test.c file, type: g++ -c mytest test.c
+
+- I also include a picture of my by-hand testing traces based on the test.txt file that verify my program is working correctly.
+
+- To check that my program work correctly:
++ I first compile and run my program by typing: 
+make
+./test -f test.txt -b 2 -n 1024 -m 20
++ The output is: 
+Block size: 2
+Cache size: 1024
+Miss time: 20
+Number of read_hits: 2
+Number of read_misses: 3
+Total number of reads: 5
+Number of write_hits: 2
+Number of write_misses: 3
+Total number of writes: 5
+Total hits: 4
+Total misses: 6
+Total hits and reads: 10
+The overall hit rate: 0.4
+Average memory access time (cycles): 12.4
++ I compare the output with the result I get by tracing manually. The results of my output and my by-hand testing traces match in terms of number of read hits, read misses and write hits, write misses.
+
+- The command line option for input file name is -f. To select the input file name, type:
+./test -f inputfilename 
+
+- To compile and run the program, type: 
+make
+./test -f test.txt -b 2 -n 1024 -m 20
+
+
+
+
+

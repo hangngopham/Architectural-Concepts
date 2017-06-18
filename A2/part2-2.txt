@@ -1,0 +1,110 @@
+The assembly code for inner loop is: 
+ 
+.L18:
+	movl	num1(%rip), %eax
+	movl	%eax, num2(%rip)
+	jmp	.L16
+.L17:
+	movq	-72(%rbp), %rax
+	movq	(%rax), %rdx
+	movl	num2(%rip), %eax
+	cltq
+	leaq	0(,%rax,4), %rcx
+	movq	-56(%rbp), %rax
+	addq	%rcx, %rax
+	movl	(%rax), %eax
+	cltq
+	addq	%rax, %rdx
+	movq	-72(%rbp), %rax
+	movq	%rdx, (%rax)
+	movl	num2(%rip), %edx
+	movl	-8(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, num2(%rip)
+.L16:
+	movl	num2(%rip), %eax
+	cmpl	-60(%rbp), %eax
+	jb	.L17
+	movl	num1(%rip), %eax
+	movl	%eax, %edx
+	movl	-76(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, num1(%rip)
+.L15:
+	movl	num1(%rip), %eax
+	cmpl	-8(%rbp), %eax
+	jl	.L18
+
+There are 30 instructions in the inner loop. 
+
+Calculations:
+1. Array size = 10000000
+- Step = 1, block = 1: Time = 55.473 ms 
+Number of instructions executed per second = ((30*10000000)/55.473)*1000 = 5408036342 instructions/second
+- Step = 1, block = 2: Time = 48.453 ms 
+Number of instructions executed per second = ((30*10000000)/48.453)*1000 = 6191567086 instructions/second
+- Step = 1, block = 4: Time = 45.846 ms 
+Number of instructions executed per second = ((30*10000000)/45.846)*1000 = 6543646120 instructions/second
+
+2. Array size = 40000000
+- Step = 1, block = 1: Time = 146.325 ms 
+Number of instructions executed per second = ((30*40000000)/146.325)*1000 = 8200922604 instructions/second
+- Step = 1, block = 2: Time = 128.247 ms 
+Number of instructions executed per second = ((30*40000000)/128.247)*1000 = 9356944022 instructions/second
+- Step = 1, block = 4: Time = 119.108 ms 
+Number of instructions executed per second = ((30*40000000)/119.108)*1000 = 10074890020 instructions/second
+
+3. Array size = 80000000
+- Step = 1, block = 1: Time = 266.139 ms 
+Number of instructions executed per second = ((30*80000000)/266.139)*1000 = 9017844059 instructions/second
+- Step = 1, block = 2: Time = 230.088 ms 
+Number of instructions executed per second = ((30*80000000)/230.088)*1000 = 10430791700 instructions/second
+- Step = 1, block = 4: Time = 211.528 ms 
+Number of instructions executed per second = ((30*80000000)/211.528)*1000 = 11346015660 instructions/second
+
+
+N = 1
+Step 1
+Block 	Time	# of instructions/second
+1	55.473		5408036342
+2	48.453		6191567086
+4	45.846		6543646120
+
+N = 4
+Step 1
+Block	Time	 # of instructions/second
+1	146.325		 8200922604
+2	128.247		 9356944022
+4	119.108		10074890020
+
+N = 8
+Step 1
+Block	Time	 # of instructions/second
+1	266.139		 9017844059
+2	230.088		10430791700
+4	211.528		11346015660
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

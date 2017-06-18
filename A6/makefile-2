@@ -1,0 +1,18 @@
+all: test
+
+test: test.o CacheSet.o Set.o 
+	g++ -o test test.o CacheSet.o Set.o
+
+test.o: test.cpp CacheSet.cpp CacheSet.h Set.cpp Set.h
+	g++ -c test.cpp
+
+CacheSet.o: CacheSet.cpp CacheSet.h Set.cpp Set.h
+	g++ -c CacheSet.cpp 
+
+Set.o: Set.cpp Set.h
+	g++ -c Set.cpp
+
+clean: 
+	rm -rf *.o expression
+
+
